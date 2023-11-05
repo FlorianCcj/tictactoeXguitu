@@ -1,34 +1,53 @@
-<!DOCTYPE html>
+<!DOCTYPE html />
+<html>
+
 <head>
-    <link rel="stylesheet" type="text/css" href="index.css" />
+  <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
-<h1>HELLO</h1>
-<h2> lorem ipsum</h2>
-<table>
+  <div id="header">
+    <h1>Tictactoe X Guitu</h1>
+  </div>
+  <div id="tictactoe-container"></div>
+  <!-- Exemple of display made by createTicTacToeTable function -->
+  <!-- <table id="tictactoe-table">
     <tr>
-        <td class="cell" id="0"></td>
-        <td class="cell" id="1"></td>
-        <td class="cell" id="2"></td>
+      <td class="cell" id="cell1"></td>
+      <td class="cell" id="cell2"></td>
+      <td class="cell" id="cell3"></td>
     </tr>
     <tr>
-        <td class="cell" id="3"></td>
-        <td class="cell" id="4"></td>
-        <td class="cell" id="5"></td>
+      <td class="cell" id="cell4"></td>
+      <td class="cell" id="cell5"></td>
+      <td class="cell" id="cell6"></td>
     </tr>
     <tr>
-        <td class="cell" id="6"></td>
-        <td class="cell" id="7"></td>
-        <td class="cell" id="8"></td>
+      <td class="cell" id="cell7"></td>
+      <td class="cell" id="cell8"></td>
+      <td class="cell" id="cell9"></td>
 
     </tr>
-</table>
-<button class="resetbutton" type="button" onclick="resetGame()">Reset</button>
-<div class="resultMessage"></div>
+  </table> -->
+  <div class="footer-container">
+    <div class="resultMessage"></div>
+    <button class="resetbutton" type="button" onclick="resetGame()">Reset</button>
+  </div>
+  <!-- <script>
+    const { createApp, ref } = Vue
+
+    createApp({
+      setup() {
+        const message = ref('Hello vue!')
+        return {
+          message
+        }
+      }
+    }).mount('#app')
+  </script> -->
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/dom.js"></script>
+  <script src="assets/js/index.page.js"></script>
 </body>
-<script src="index.js"></script>
 
-<footer>
-
-</footer>
+</html>

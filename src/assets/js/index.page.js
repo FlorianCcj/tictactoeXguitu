@@ -1,5 +1,5 @@
-const playerOneSymbole = 'X'
-const playerTwoSymbole = 'O'
+const playerOneSymbole = '🐣'
+const playerTwoSymbole = '🐱'
 const tableSize = 5;
 const winningCombinations = createWinningCombinations(tableSize);
 

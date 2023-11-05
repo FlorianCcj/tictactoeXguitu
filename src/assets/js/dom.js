@@ -1,56 +1,44 @@
-function checkWinner() {
-  for (let i = 0; i < winningCombinations.length; i++) {
-    const [a, b, c] = winningCombinations[i];
-    if (
-      cells[a].textContent &&
-      cells[a].textContent === cells[b].textContent &&
-      cells[a].textContent === cells[c].textContent
-    ) {
-      gameActive = false;
-      document.querySelector('.resultMessage').textContent = 'Le gagnant est ' + currentPlayer + '!';
-      return true;
+createTicTacToeTable = (size) => {
+  var table = document.createElement('table');
+  table.id = "tictactoe-table"
+
+  var tbody = table.createTBody();
+  for (let i_row = 0; i_row < size; i_row++) {
+    const row = tbody.insertRow();
+    for (let i_cel = 0; i_cel < size; i_cel++) {
+      var cell1 = row.insertCell(i_cel);
+      cell1.classList.add('cell');
+      cell1.id = 'cell' + (i_row * size + i_cel);
     }
   }
-  return false; // No winner yet
+
+  document.getElementById('tictactoe-container').appendChild(table);
 }
 
-function checkForDraw() {
-  let isDraw = true;
-  cells.forEach(function (cell) {
-    if (cell.textContent === '') {
-      isDraw = false;
-    }
-  });
-  if (isDraw) {
-    gameActive = false;
-    document.querySelector('.resultMessage').textContent = 'Match nul!';
-  }
-  return isDraw;
-}
-
-function cellClicked(event) {
+cellClicked = (event) => {
   if (!gameActive) return;
 
-  var cell = event.target;
-  if (checkIfCellEmpty(cell)) {
+  let cell = event.target;
+  if (isCellEmpty(cell)) {
     cell.textContent = currentPlayer;
-    console.log('Player ' + currentPlayer + ' moved');
-    if (checkWinner()) {
-      alert('The winner is on the board');
-    } else if (checkForDraw()) {
-      alert('The game is a draw');
+    if (isAWin(cells, winningCombinations.filter(i_combo => i_combo.indexOf(+cell.id.replace('cell', '')) !== -1))) {
+      gameActive = false;
+      document.querySelector('.resultMessage').textContent = 'The winner is ' + currentPlayer + '!';
+    } else if (isADraw(cells)) {
+      gameActive = false;
+      document.querySelector('.resultMessage').textContent = 'Draw!';
     } else {
-      togglePlayer();
+      currentPlayer = togglePlayer(currentPlayer);
       console.log('Toggled Player, new player is ' + currentPlayer);
     }
   }
 }
 
-function resetGame() {
-  cells.forEach(function (cell) {
-    cell.textContent = '';
+resetGame = () => {
+  cells.forEach((i_cell) => {
+    i_cell.textContent = '';
   });
-  currentPlayer = 'X';
+  currentPlayer = playerOneSymbole;
   gameActive = true;
-  document.querySelector('.resultMessage').textContent = ''; // Clear the result message on reset
+  document.querySelector('.resultMessage').textContent = '';
 }
